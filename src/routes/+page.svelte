@@ -7,6 +7,7 @@
 
 let inputText = ''
 let updateText = ''
+// @ts-ignore
 let findIndex = null
 
 const addTask = () => {
@@ -41,9 +42,10 @@ const editTask = (index) => {
 }
 
 const updateTask = () => {
+  // @ts-ignore
   taskList[findIndex].name = updateText
   updateText = ''
-  findIndex = null
+  findIndex = false
 }
 
 </script>
@@ -53,9 +55,9 @@ const updateTask = () => {
     <h1>Todo 📒</h1>
     <form>
       <input type="text" bind:value={inputText}>
-      <button on:click={addTask}>Add task</button>
-      <input type="text" bind:value={updateText}>
-      <button on:click={updateTask}>Update</button>
+      <button disabled={inputText ? false : true} on:click={addTask}>Add task</button>
+      <input type="text" disabled={updateText ? false : true} bind:value={updateText}>
+      <button disabled={findIndex ? false : true} on:click={updateTask}>Update</button>
     </form>
     <ol>
       {#each taskList as task, index}
