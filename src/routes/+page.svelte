@@ -83,7 +83,7 @@ const updateTask = async() => {
         {#if taskList.length}
         <ol>
             {#each taskList as task, index}
-            <div class="list-item">
+            <div class="list-item" class:ok={task.isComplete}>
                 <li class:complete={task.isComplete}>{task.name}</li>
                 <div class="icon-container">
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -164,5 +164,9 @@ button {
 }
 .icon {
   cursor: pointer;
+}
+
+.ok {
+  background-color: dimgray;
 }
 </style>
