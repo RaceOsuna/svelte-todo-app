@@ -8,6 +8,9 @@
 let inputText = ''
 let updateText = ''
 // @ts-ignore
+	/**
+	 * @type {string | number | boolean | null}
+	 */
 let findIndex = null
 
 const addTask = () => {
@@ -59,6 +62,7 @@ const updateTask = () => {
       <input type="text" disabled={updateText ? false : true} bind:value={updateText}>
       <button disabled={findIndex ? false : true} on:click={updateTask}>Update</button>
     </form>
+    {#if taskList.length}
     <ol>
       {#each taskList as task, index}
       <div class="list-item">
@@ -74,6 +78,9 @@ const updateTask = () => {
       </div>
       {/each}
     </ol>
+    {:else}
+      <h2>No Tasks</h2>
+    {/if}
   </div>
 </main>
 
