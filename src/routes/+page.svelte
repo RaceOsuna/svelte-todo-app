@@ -6,6 +6,8 @@
 ]
 
 let inputText = ''
+let updateText = ''
+let findIndex = null
 
 const addTask = () => {
   let newTask = {
@@ -31,21 +33,37 @@ const deleteTask = (index) => {
   taskList = taskList.filter(task => task !== deleteTask)
 }
 
+// @ts-ignore
+const editTask = (index) => {
+  updateText = taskList[index].name
+  findIndex = index
+  console.log(findIndex)
+}
+
+const updateTask = () => {
+  taskList[findIndex].name = updateText
+  updateText = ''
+  findIndex = null
+}
+
 </script>
 
 <main>
   <div class="app-container">
     <h1>Todo 📒</h1>
-    <form action="">
+    <form>
       <input type="text" bind:value={inputText}>
       <button on:click={addTask}>Add task</button>
+      <input type="text" bind:value={updateText}>
+      <button on:click={updateTask}>Update</button>
     </form>
     <ol>
       {#each taskList as task, index}
       <div class="list-item">
         <li class:complete={task.isComplete}>{task.name}</li>
         <div class="icon-container">
-          <span class="icon">✏️</span>
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <span role="button" tabindex="0" class="icon" on:click={() => editTask(index)}>✏️</span>
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <span role="button" tabindex="0" class="icon" on:click={() => markComplete(index)}>✅</span>
           <!-- svelte-ignore a11y-click-events-have-key-events -->
