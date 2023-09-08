@@ -19,7 +19,6 @@ import {
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
-
 const collect = collection(db, "taskList")
 
 let taskList = []
@@ -28,8 +27,7 @@ const unsubscribe = onSnapshot(collect, (snapshot) => {
   let fbtl = []
   snapshot.forEach(item => {
     let task = {
-      ...item.data(),
-      id: item.id
+      ...item.data()
     }
     fbtl = [task, ...fbtl]
   })
