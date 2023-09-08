@@ -75,7 +75,7 @@ const updateTask = async() => {
     <div class="app-container">
         <h1>Todo 📒</h1>
         <form>
-            <input type="text" bind:value={inputText}>
+            <input type="text" placeholder="add task" bind:value={inputText}>
             <button disabled={inputText ? false : true} on:click={addTask}>Add task</button>
             <input type="text" disabled={updateText ? false : true} bind:value={updateText}>
             <button disabled={taskToUpdate ? false : true} on:click={updateTask}>Update</button>
@@ -111,11 +111,18 @@ main {
   margin: 0;
 }
 
+h1 {
+  color: white
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
+  background-color: black;
+  padding: 20px;
+  height: 100vh;
 }
 
 .complete {
@@ -130,13 +137,14 @@ ol {
 
 .list-item {
   display: flex;
+  background-color: aliceblue;
 }
 
 li {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: x-large;
+  font-size: large;
 }
 
 .icon-container {
@@ -149,6 +157,11 @@ button {
   cursor: pointer;
 }
 
+.list-item {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
 .icon {
   cursor: pointer;
 }
